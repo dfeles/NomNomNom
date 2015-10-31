@@ -169,7 +169,7 @@
 				09ABC07813A1D52D009C3FCF /* Other Sources */,
 			);
 			name = NomNomNom;
-			path = ParseStarterProject;
+			path = NomNomProject;
 			sourceTree = "<group>";
 		};
 		09ABC07813A1D52D009C3FCF /* Other Sources */ = {
