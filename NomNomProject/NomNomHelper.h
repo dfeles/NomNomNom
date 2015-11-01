@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #define PADDING 10
-#define CARDPADDING 20
+#define CARDPADDING 30
 #define HEADER 100
-#define ICONSIZE 76
+#define ICONSIZE 50
+#define LOGOSIZE 70
 
 @interface NomNomHelper:NSObject{
 }

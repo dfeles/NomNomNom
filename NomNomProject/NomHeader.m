@@ -20,7 +20,7 @@
     self = [super init];
     if(self)
     {
-        nomLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ICONSIZE, ICONSIZE)];
+        nomLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LOGOSIZE, LOGOSIZE)];
         [nomLogo setImage:[UIImage imageNamed:@"logo"]];
         nomLogo.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:nomLogo];
@@ -31,7 +31,7 @@
 
 -(void) layoutSubviews
 {
-    nomLogo.frame = CGRectMake([NomNomHelper getScreenWidth]/2-ICONSIZE/2, self.bounds.size.height/2-ICONSIZE/2+20, ICONSIZE, ICONSIZE);
+    nomLogo.frame = CGRectMake([NomNomHelper getScreenWidth]/2-LOGOSIZE/2, self.bounds.size.height/2-LOGOSIZE/2+20, LOGOSIZE, LOGOSIZE);
 }
 
 @end

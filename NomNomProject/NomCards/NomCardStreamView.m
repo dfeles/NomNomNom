@@ -200,7 +200,7 @@ float startTouchY = 0;
     [currentCard addGestureRecognizer:tapRecognizer];
     
     
-    currentCard.frame = CGRectMake(10, self.bounds.size.height-CARDPADDING*2, [NomNomHelper getScreenWidth]-CARDPADDING*2, self.bounds.size.height-CARDPADDING);
+    currentCard.frame = CGRectMake(CARDPADDING, self.bounds.size.height-CARDPADDING*2, [NomNomHelper getScreenWidth]-CARDPADDING*2, self.bounds.size.height-CARDPADDING*2);
     
     [currentCard pop_addAnimation:anim forKey:@"slide"];
     

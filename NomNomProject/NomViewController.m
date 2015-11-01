@@ -22,13 +22,9 @@ CGFloat height;
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
-//    [self.view setBackgroundColor:[UIColor redColor]];
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"background"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    UIImageView *myImage = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    myImage.image = [UIImage imageNamed:@"background"];
+    [self.view addSubview:myImage];
     
     menusArray = [NomDatabase getMenuForToday];
     
@@ -69,7 +65,7 @@ CGFloat height;
 - (void) addCardStream
 {
     cardStream = [NomCardStreamView new];
-    [cardStream setFrame:CGRectMake(0, HEADER+PADDING, width, height-HEADER-PADDING*2)];
+    [cardStream setFrame:CGRectMake(0, HEADER, width, height-HEADER)];
     [self.view addSubview:cardStream];
 }
 

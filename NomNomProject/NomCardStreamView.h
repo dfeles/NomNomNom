@@ -18,7 +18,7 @@
     int currentFood;
     UIGestureRecognizer * tapRecognizer;
     UISwipeGestureRecognizer * swipeRecognizer;
-    UIView* activeCard;
+    NomMenuCardView* activeCard;
 }
 
 -(void) setFoodList :(NSArray*)foodList;
