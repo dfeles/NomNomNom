@@ -19,6 +19,7 @@
 
 +(UILabel*) titleLabelWithString: (NSString*)content;
 +(UILabel*) hugeLabelWithString: (NSString*)content;
++(UILabel*) subTitleLabelWithString: (NSString*)content;
 +(UIColor *)colorWithHex:(UInt32)col;
 +(int)getScreenWidth;
 +(int)getScreenHeight;

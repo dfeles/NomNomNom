@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <pop/POP.h>
 #import "NomNomHelper.h"
+#import "NomNom-Swift.h"
 
 @interface NomMenuCardView:UIView{
     UIView *frontView;
@@ -23,13 +24,18 @@
     UILabel *main;
     UIImageView *mainIcon;
     UILabel *price;
+    UILabel *distance;
     UIButton *moreButton;
     
     //back view
     UILabel *hello;
+    MapView *mapView;
     
     float moreIconSize;
 }
+
+@property CLLocation *currentLocation;
+
 -(void) setCardWithItem :(PFObject*)food;
 
 -(void) switchView;

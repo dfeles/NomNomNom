@@ -20,6 +20,7 @@
     self = [super init];
     if(self)
     {
+        self.clipsToBounds = YES;
         frontViewOpened = true;
         [self setBackgroundColor:[UIColor whiteColor]];
         frontView = [UIView new];
@@ -62,6 +63,9 @@
     price = [NomNomHelper hugeLabelWithString:@""];
     [frontView addSubview:price];
     
+    distance = [NomNomHelper subTitleLabelWithString:@""];
+    [frontView addSubview:distance];
+    
     
     moreIconSize = 30;
     moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -78,6 +82,9 @@
 {
     hello = [NomNomHelper titleLabelWithString:@"hellooo"];
     [backView addSubview:hello];
+    
+    mapView = [MapView new];
+    [backView addSubview:mapView];
 }
 
 -(void) layoutSubviews
@@ -93,15 +100,21 @@
     
     actualY+=100;
     price.frame= CGRectMake(PADDING,actualY-10,self.bounds.size.width-PADDING*2,20);
+    actualY+=30;
+    distance.frame= CGRectMake(PADDING,actualY-10,self.bounds.size.width-PADDING*2,20);
     
-    actualY+=100;
+    actualY+=50;
     moreButton.frame= CGRectMake(self.bounds.size.width/2-moreIconSize/2,actualY,moreIconSize,moreIconSize);
     
     
     
     actualY = 50;
-    backView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-    hello.frame = CGRectMake(2*PADDING+ICONSIZE,actualY-10,self.bounds.size.width-PADDING*2,20);
+    backView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    backView.backgroundColor = [NomNomHelper colorWithHex:0xEFEFEF];
+
+    mapView.frame = CGRectMake(PADDING, PADDING, backView.frame.size.width-PADDING*2,backView.frame.size.width-PADDING*2);
+    
+    
     
 }
 
@@ -110,34 +123,72 @@
     [soup setText:food[@"Soup"]];
     [main setText:food[@"Mainfood"]];
     [price setText:[NSString stringWithFormat:@"%@ Ft", food[@"Price"]]];
+    
+    [self getLocation:@"Kastély utca 18, Törökbálint"];
+    
+}
+
+-(void) getLocation:(NSString*) address
+{
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder geocodeAddressString:address completionHandler:^(NSArray* placemarks, NSError* error){
+        // This is called later, at some point after view did load is called.
+        NSLog(@"Inside completionHandler.");
+        
+        if(error) {
+            NSLog(@"Error");
+            return;
+        }
+        
+        CLPlacemark *placemark = [placemarks lastObject];
+        
+        [mapView goTo:placemark.location currentLocation:[self currentLocation]];
+        
+        CLLocationDistance meters = [placemark.location distanceFromLocation:[self currentLocation]];
+        if(meters < 1000)
+        {
+            [distance setText:[NSString stringWithFormat:@"%i%@",(int) meters,@" m"]];
+        }
+        else
+        {
+            [distance setText:[NSString stringWithFormat:@"%f%@",meters/1000,@" km"]];
+        }
+    }];
 }
 
 -(void) switchView
 {
     if(frontViewOpened)
     {
-        [frontView removeFromSuperview];
-        [self addSubview:backView];
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations: ^{
+                            [frontView removeFromSuperview];
+                            [self addSubview:backView];
+                            [backView addSubview:moreButton];
+                        }
+                        completion:NULL];
         frontViewOpened = false;
     }
     else
     {
-        [backView removeFromSuperview];
-        [self addSubview:frontView];
+        
+        [UIView transitionWithView:self
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        animations: ^{
+                            [backView removeFromSuperview];
+                            [self addSubview:frontView];
+                            [frontView addSubview:moreButton];
+                        }
+                        completion:NULL];
         frontViewOpened = true;
     }
 }
 
 - (IBAction)swap:(UIButton *)button
 {
-    [UIView transitionWithView:self
-                      duration:0.5
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
-                    animations: ^{
-                        [backView removeFromSuperview];
-                        [self addSubview:frontView];
-                    }
-                    completion:NULL];
     /*
     if ([self.delegate respondsToSelector:@selector(myController:buttonTapped:)]) {
         [self.delegate myController:self buttonTapped:button];

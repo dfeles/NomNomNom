@@ -23,6 +23,9 @@
         currentFood = 0;
         tapRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         tapRecognizer.cancelsTouchesInView = NO;
+        
+        currentLocationManager = [CurrentLocationManager new];
+        [currentLocationManager getCurrentLocation];
     }
     
     return self;
@@ -204,7 +207,9 @@ float startTouchY = 0;
     
     [currentCard pop_addAnimation:anim forKey:@"slide"];
     
+    [currentCard setCurrentLocation:currentLocationManager.currentLocation];
     [currentCard setCardWithItem:foodList[currentFood]];
+
     
 }
 

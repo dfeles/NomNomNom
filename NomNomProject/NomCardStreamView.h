@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <pop/POP.h>
 #import "NomMenuCardView.h"
+#import "NomNom-Swift.h"
 
 @interface NomCardStreamView:UIView
 {
@@ -19,6 +20,8 @@
     UIGestureRecognizer * tapRecognizer;
     UISwipeGestureRecognizer * swipeRecognizer;
     NomMenuCardView* activeCard;
+    
+    CurrentLocationManager *currentLocationManager;
 }
 
 -(void) setFoodList :(NSArray*)foodList;

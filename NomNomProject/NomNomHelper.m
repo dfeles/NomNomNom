@@ -14,12 +14,25 @@
 
 @implementation NomNomHelper
 
+
+
 +(UILabel*) titleLabelWithString: (NSString*)content
 {
     UILabel *label = [UILabel new];
     [label setFont:[UIFont boldSystemFontOfSize:16]];
     [label setTextColor:[UIColor blackColor]];
     [label setText:content];
+    
+    return label;
+}
+
++(UILabel*) subTitleLabelWithString: (NSString*)content
+{
+    UILabel *label = [UILabel new];
+    [label setFont:[UIFont systemFontOfSize:10]];
+    [label setTextColor:[UIColor lightGrayColor]];
+    [label setText:content];
+    [label setTextAlignment:NSTextAlignmentCenter];
     
     return label;
 }
