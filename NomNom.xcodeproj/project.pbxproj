@@ -94,7 +94,7 @@
 		C7F3D8231BD0663100314E48 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		C7F3D8251BD06A3500314E48 /* NomHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NomHeader.m; sourceTree = "<group>"; };
 		C7F3D8271BD06A5700314E48 /* NomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomHeader.h; sourceTree = "<group>"; };
-		C7F3D82A1BD0704700314E48 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		C7F3D82A1BD0704700314E48 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C7F3D82D1BD0733C00314E48 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
