@@ -25,8 +25,8 @@ CGFloat height;
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
-    UIImageView *myImage = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    myImage.image = [UIImage imageNamed:@"background"];
+    UIView *myImage = [[UIView alloc] initWithFrame:self.view.bounds];
+    myImage.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     [self.view addSubview:myImage];
     
     menusArray = [NomDatabase getMenuForToday];

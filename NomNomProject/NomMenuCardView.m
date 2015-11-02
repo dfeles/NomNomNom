@@ -109,8 +109,11 @@
     
     
     actualY = 50;
+    
+    self.clipsToBounds = YES;
     backView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    backView.backgroundColor = [NomNomHelper colorWithHex:0xEFEFEF];
+    //backView.backgroundColor = [NomNomHelper colorWithHex:0xEFEFEF];
+    backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 
     mapView.frame = CGRectMake(PADDING, PADDING, backView.frame.size.width-PADDING*2,backView.frame.size.width-PADDING*2);
     
@@ -124,7 +127,7 @@
     [main setText:food[@"Mainfood"]];
     [price setText:[NSString stringWithFormat:@"%@ Ft", food[@"Price"]]];
     
-    [self getLocation:@"Kastély utca 18, Törökbálint"];
+    [self getLocation:@"Andrássy 58, Budapest"];
     
 }
 

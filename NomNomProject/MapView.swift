@@ -32,20 +32,26 @@ class MapView: UIView, MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     override func layoutSubviews() {
-        map.frame = CGRectMake(0, 0, self.frame.width, self.frame.height);
+        map.frame = CGRectMake(0, 0, self.frame.width, self.frame.height)
     }
     
     func goTo(address:CLLocation, currentLocation:CLLocation) {
         print(currentLocation)
         print(address)
         
-        var coordinateTo:CLLocationCoordinate2D = address.coordinate
+        let coordinateTo:CLLocationCoordinate2D = address.coordinate
         
         
-            
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegion(center: coordinateTo, span: span)
+        var middlePoint:CLLocationCoordinate2D = CLLocationCoordinate2D()
+        middlePoint.latitude = (address.coordinate.latitude + currentLocation.coordinate.latitude) / 2.0
+        middlePoint.longitude = (address.coordinate.longitude + currentLocation.coordinate.longitude) / 2.0
+
+        let meters:CLLocationDistance = currentLocation.distanceFromLocation(address)*1.2
+        
+        let region = MKCoordinateRegionMakeWithDistance(middlePoint, meters, meters)
+        //MKCoordinateRegion(center: middlePoint, span: span)
         self.map.setRegion(region, animated: true)
+        
         
         // Drop a pin
         let toPin = MKPointAnnotation()
