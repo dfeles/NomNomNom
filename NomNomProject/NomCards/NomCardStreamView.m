@@ -112,7 +112,12 @@ float startTouchY = 0;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = touches.anyObject;
     
-    float scale = (7.0*activeCard.transform.a + (1.05+touch.force/100.0))/8.0;
+    float force = 1.0;
+    if ([touch respondsToSelector:@selector(force)]) {
+        force = touch.force;
+    }
+    
+    float scale = (7.0*activeCard.transform.a + (1.05+force/100.0))/8.0;
     float angle = ([NomNomHelper getScreenWidth]/2-activeCard.center.x)/200.0;
     float multiply = -(self.bounds.size.height/2-startTouchY)/(self.bounds.size.height/2);
     
